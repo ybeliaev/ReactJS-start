@@ -21,21 +21,28 @@
 <div id="root"></div>
 
 
-<!-- В Car описываем нужную структуру компонента. Вместо class пишем className. Car - компонент. Передадим его в шаблон с id="root"
-1. Обращаемся к библиотеке ReactDOM и вызываем метод render, который инъектирует компонент в ХТМЛ
-2. Сначала ЧТО занести, вторым параметром КУДА занести компонент-->
+<!-- В метод render можно заносить ТОЛЬКО ОДИН элемент. В const App уже есть JSX код, поэтому  ReactDOM.render(
+  <App /> НЕПРАВИЛЬНО-->
 <script type="text/babel">
 
-  function Car(){
+  function Car(props){
     return (
       <div className="car">
-        <h1>Ford Focus</h1>
-        <p>Year: <strong>2017</strong></p>
+        <h1>{props.name}</h1>
+        <p>Year: <strong>{props.year}</strong></p>
       </div>
     )
 }
+const App = (
+  <div>
+    <Car name="Ford"  year="2016"/>
+    <Car name="Mazda" year="2018"/>
+    <Car name="Audi"  year="2012"/>
+  </div>
+)
+
 ReactDOM.render(
-  <Car />,
+  App,
   document.querySelector('#root')
 )
 
